@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SprintFlow
 
-## Getting Started
+SprintFlow is a modern, full-stack Agile project-management SaaS application designed for software teams. It provides a clean, secure, and scalable workspace to manage the complete Scrum lifecycle—from product backlogs and sprint planning to interactive Kanban workflows.
 
-First, run the development server:
+## Features (Roadmap)
+- Authentication & Role-Based Access Control
+- Projects & Team Management
+- Backlog & Sprint Planning
+- Interactive Kanban Board
+- Bug Tracking
+- Analytics & Burndown Charts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technology Stack
+- **Frontend**: Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend**: Next.js Server Actions & Route Handlers
+- **Database**: PostgreSQL (Neon) with Prisma ORM
+- **Validation**: Zod & React Hook Form
+- **Deployment**: Vercel
+- **Monitoring**: Sentry
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd sprintflow
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+The application will be available at `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture Note
+This project emphasizes server-side business logic and strict TypeScript typing. All UI components are Server Components by default, except where interactivity (such as forms or drag-and-drop boards) requires Client Components.
