@@ -1,3 +1,4 @@
+import 'server-only';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
@@ -20,3 +21,6 @@ export const db = globalForPrisma.prisma ?? prismaClientSingleton();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
 
+// Re-export foundational database types and error utilities (no circular dependencies)
+export * from './db/types';
+export * from './db/errors';
