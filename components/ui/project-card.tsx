@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils"
-import { StatusBadge } from "./status-badge"
+import { StatusBadge, type StatusType } from "./status-badge"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 interface ProjectCardProps {
   name: string
-  description: string
-  status: "Active" | "Completed" | "In Progress" | "On Hold" | "To Do" | "In Review" | "Done"
+  description?: string | null
+  status: StatusType
   progress: number
   taskCount: number
   members: string[]
@@ -25,12 +25,12 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className={cn("group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-md cursor-pointer", className)}>
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="text-lg font-semibold tracking-tight text-foreground">{name}</h3>
-          <p className="mt-1 text-sm text-muted-foreground line-clamp-1">{description}</p>
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-lg font-semibold tracking-tight text-foreground truncate">{name}</h3>
+          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{description || 'No description provided.'}</p>
         </div>
-        <StatusBadge status={status} />
+        <StatusBadge status={status} className="shrink-0" />
       </div>
 
       <div className="mt-6 flex-1">
@@ -49,11 +49,22 @@ export function ProjectCard({
       <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
         <div className="flex flex-col gap-2">
           <div className="flex -space-x-2">
-            {members.map((member, i) => (
-              <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-card bg-secondary text-xs font-medium text-secondary-foreground">
-                {member}
+            {members.length > 0 ? (
+              members.slice(0, 4).map((member, i) => (
+                <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-card bg-secondary text-xs font-medium text-secondary-foreground">
+                  {member}
+                </div>
+              ))
+            ) : (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-card bg-secondary text-xs font-medium text-secondary-foreground">
+                —
               </div>
-            ))}
+            )}
+            {members.length > 4 && (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-card bg-muted text-[10px] font-medium text-muted-foreground">
+                +{members.length - 4}
+              </div>
+            )}
           </div>
           <span className="text-xs text-muted-foreground">{lastUpdated}</span>
         </div>

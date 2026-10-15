@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 
-type StatusType = "Active" | "Completed" | "In Progress" | "On Hold" | "To Do" | "In Review" | "Done"
-type PriorityType = "High" | "Medium" | "Low"
+export type StatusType = "Active" | "Completed" | "In Progress" | "On Hold" | "To Do" | "In Review" | "Done" | "Archived"
+export type PriorityType = "High" | "Medium" | "Low"
 
 interface StatusBadgeProps {
   status?: StatusType
@@ -37,6 +37,10 @@ export function StatusBadge({ status, priority, className }: StatusBadgeProps) {
       case "To Do":
         bg = "bg-slate-500/10"
         text = "text-slate-400"
+        break
+      case "Archived":
+        bg = "bg-zinc-500/10"
+        text = "text-zinc-400"
         break
     }
   } else if (priority) {
